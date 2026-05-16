@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage[none]{hyphenat}
+\usepackage{setspace}
+\usepackage{subcaption}
+\usepackage{titlesec}
+\usepackage{amsmath}
+
+\geometry{margin=1in}
+\setstretch{0.96}
+
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\title{Labwork 3}
+\author{Trinh Thanh Vinh - 2540110}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Network Architecture Design and Implementation}
+We design the neural network using three basic parts: \texttt{Neuron}, \texttt{Layer}, and \texttt{NeuralNetwork}. This design helps us easily change the size of the network.
+
+\subsection{Main Components}
+\begin{itemize}
+    \item \textbf{Neuron Class:} This is the smallest part. Every neuron saves its own weights ($w$) and a bias ($b$). It also uses the Sigmoid function to calculate the output.
+    \item \textbf{Layer Class:} This is a collection of neurons. When we create a layer, it makes many neurons. All neurons in this layer get the same inputs from the previous layer.
+    \item \textbf{NeuralNetwork Class:} This is the main controller. It reads the network structure from a file named \texttt{struc.txt} and creates the layers. It also sets the weights and biases from \texttt{weight.txt}.
+\end{itemize}
+
+\subsection{How the Network is Built}
+The network is built in two clear steps:
+\begin{enumerate}
+    \item \textbf{Read the Structure:} The network opens \texttt{struc.txt}. The first line shows the total number of layers. The next lines show how many neurons are in each layer.
+    \item \textbf{Create Layers:} The system loops through the structure list. It calculates the input size and the number of neurons for each layer, then creates them one by one.
+\end{enumerate}
+
+\section{Feedforward Implementation}
+The feedforward process moves data forward through the network. It goes from the input layer, through the hidden layers, and finally to the output layer.
+
+\subsection{Math Formulas}
+Inside each neuron, we multiply the inputs by their weights, add them together, and add the bias. Then, we use the Sigmoid function to get a result between 0 and 1.
+\begin{equation}
+    z = b + \sum_{i=1}^{n} w_i \cdot x_i
+\end{equation}
+\begin{equation}
+    \text{output} = \sigma(z) = \frac{1}{1 + e^{-z}}
+\end{equation}
+
+\subsection{Step-by-Step Execution}
+\begin{itemize}
+    \item \textbf{Network Step:} The \texttt{feedforward} method gets the first input data. It uses a loop to pass this data through every layer. The output of one layer becomes the input for the next layer.
+    \item \textbf{Layer Step:} The \texttt{forward} method in the Layer class sends the input data to every neuron inside that layer. It collects all the neuron results into a list.
+    \item \textbf{Neuron Step:} The \texttt{forward} method in the Neuron class does the math. It calculates the sum, adds the bias, and calls the sigmoid function to return the final number.
+\end{itemize}
+
+\end{document}
