@@ -1,6 +1,5 @@
 import random
 import math
-import csv
 
 class Neuron:
     def __init__(self, input_size):
@@ -131,7 +130,6 @@ xor_labels = [0, 1, 1, 0]
 network = NeuralNetwork("struc.txt")
 network.initialize_random()
 network.gradient_descent(xor_inputs, xor_labels, l=0.5)
-print("\nFinal predictions:")
 for x, y in zip(xor_inputs, xor_labels):
     output = network.feedforward(x)
     print(f"{x} -> predicted: {output[0]}, expected: {y}")
