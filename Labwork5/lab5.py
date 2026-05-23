@@ -145,11 +145,3 @@ print("\nFinal predictions:")
 for x, y in zip(xor_inputs, xor_labels):
     output = network.feedforward(x)
     print(f"{x} -> predicted: {output[0]:.4f}, expected: {y}")
-
-# x_data, y_data = load_csv("loan2.csv")
-# network = NeuralNetwork("struc.txt")
-# network.gradient_descent(x_data, y_data, l=0.5)
-# print("\nFinal predictions:")
-# for x, y in zip(x_data, y_data):
-#     output = network.feedforward(x)
-#     print(f"{x} -> predicted: {output[0]:.4f}, expected: {y}")
