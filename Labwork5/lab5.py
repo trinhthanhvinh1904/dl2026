@@ -84,7 +84,7 @@ class NeuralNetwork:
             output = self.feedforward(x)[0]
             z = self.layers[-1].neurons[0].last_z
             total += y * z - math.log(1 + math.exp(z))
-        return -total / n
+        return -total/n
     def compute_deltas(self, y_true):
         output_layer = self.layers[-1]
         for j, neuron in enumerate(output_layer.neurons):
@@ -121,16 +121,6 @@ class NeuralNetwork:
                         neuron.bias = neuron.bias - l * neuron.delta
             step += 1
 
-def load_csv(filename):
-    x_data = []
-    y_data = []
-    with open(filename, "r") as file:
-        reader = csv.reader(file)
-        for row in reader:
-            x_data.append([float(v) for v in row[:-1]])
-            y_data.append(float(row[-1]))
-    return x_data, y_data
-
 xor_inputs = [
     [0, 0],
     [0, 1],
@@ -144,4 +134,4 @@ network.gradient_descent(xor_inputs, xor_labels, l=0.5)
 print("\nFinal predictions:")
 for x, y in zip(xor_inputs, xor_labels):
     output = network.feedforward(x)
-    print(f"{x} -> predicted: {output[0]:.4f}, expected: {y}")
+    print(f"{x} -> predicted: {output[0]}, expected: {y}")
